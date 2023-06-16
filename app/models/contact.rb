@@ -13,7 +13,6 @@ class Contact < ApplicationRecord
     end
     if contact.nil?
       self.linkPrecedence = "primary"
-      self.linkedId = self.id
     else
       self.linkPrecedence = "secondary"
       self.linkedId = contact.linkedId
