@@ -9,10 +9,14 @@ class Contact < ApplicationRecord
   def set_linkPrecedence
     contact = Contact.where(phoneNumber: self.phoneNumber).first
     if contact.nil?
+      contact = Contact.where(email: self.email).first
+    end
+    if contact.nil?
       self.linkPrecedence = "primary"
+      self.linkedId = self.id
     else
       self.linkPrecedence = "secondary"
-      self.linkedId = contact.id
+      self.linkedId = contact.linkedId
     end
   end
 
